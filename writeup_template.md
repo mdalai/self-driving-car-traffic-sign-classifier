@@ -104,12 +104,19 @@ My final model results were:
 * validation set accuracy of 98%.
 * test set accuracy of ?
 
-If an iterative approach was chosen:
-* What was the first architecture that was tried and why was it chosen?
-* What were some problems with the initial architecture?
-* How was the architecture adjusted and why was it adjusted? Typical adjustments could include choosing a different model architecture, adding or taking away layers (pooling, dropout, convolution, etc), using an activation function or changing the activation function. One common justification for adjusting an architecture would be due to overfitting or underfitting. A high accuracy on the training set but low accuracy on the validation set indicates over fitting; a low accuracy on both sets indicates under fitting.
-* Which parameters were tuned? How were they adjusted and why?
-* What are some of the important design choices and why were they chosen? For example, why might a convolution layer work well with this problem? How might a dropout layer help with creating a successful model?
+I started with color image data. I thought it is not necessary to change images into gray scale. As I knew famous VGG and AlexNet models are succeed on RGB images.
+* Started with LeNet. At EPOCH 10, Training Accuracy = 0.971, Validation Accuracy = 0.763. Clearly it is overfitting, so I added dropouts.
+* LeNet + Dropout: At EPOCH 10, Training Accuracy = 0.868, Validation Accuracy = 0.722.  Dropout works. Let's try on more EPOCHS.
+* More EPOCHES to train: At EPOCH 21,Training Accuracy = 0.973, Validation Accuracy = 0.805. Obviously it is overfitting again.
+* Tried 16 different architecures and trained 16 times back and forth. Folowings are a few Accuracy Plottings. 
+* The common issue is overfitting. Lowest dropout I can try is 0.6. I tried 0.5, the model does not like it. It basically stopped learning.
+* This [Google Doc](https://docs.google.com/document/d/1r1ZT1nIan5SOhfctdkrXNfES7yOc3hqESByBbwizVCo/edit#) has more detailed training process. Feel free to check it out. 
+
+After trying so many times, I was frustrated. I have to change the training strategy. I decided to work on dataset preprocessing. 
+* Convert image dataset to gray scale. This step is **GAME CHANGER**.
+* Validation accuracy get to 94% just in 10 steps tranings.
+* 20 EPOCHS:
+
 
 If a well known architecture was chosen:
 * What architecture was chosen?
