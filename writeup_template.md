@@ -1,9 +1,5 @@
 #**Traffic Sign Recognition** 
 
-##Writeup Template
-
-###You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
-
 ---
 
 **Build a Traffic Sign Recognition Project**
@@ -34,8 +30,6 @@ The goals / steps of this project are the following:
 ---
 ###Writeup / README
 
-####1. Provide a Writeup / README that includes all the rubric points and how you addressed each one. You can submit your writeup as markdown or pdf. You can use this template as a guide for writing the report. The submission includes the project code.
-
 You're reading it! and here is a link to my [project code](https://github.com/udacity/CarND-Traffic-Sign-Classifier-Project/blob/master/Traffic_Sign_Classifier.ipynb)
 
 ###Data Set Summary & Exploration
@@ -45,17 +39,17 @@ You're reading it! and here is a link to my [project code](https://github.com/ud
 I used the pandas library to calculate summary statistics of the traffic
 signs data set:
 
-* The size of training set is ?
+* The size of training set is 34799.
 * The size of the validation set is ?
-* The size of test set is ?
-* The shape of a traffic sign image is ?
-* The number of unique classes/labels in the data set is ?
+* The size of test set is 12360.
+* The shape of a traffic sign image is (32, 32, 3).
+* The number of unique classes/labels in the data set is 43.
 
 ####2. Include an exploratory visualization of the dataset.
 
 Here is an exploratory visualization of the data set. It is a bar chart showing how the data ...
 
-![alt text][image1]
+![alt text][assets/bar_chart.png]
 
 ###Design and Test a Model Architecture
 
@@ -67,17 +61,7 @@ Here is an example of a traffic sign image before and after grayscaling.
 
 ![alt text][image2]
 
-As a last step, I normalized the image data because ...
-
-I decided to generate additional data because ... 
-
-To add more data to the the data set, I used the following techniques because ... 
-
-Here is an example of an original image and an augmented image:
-
-![alt text][image3]
-
-The difference between the original data set and the augmented data set is the following ... 
+As a last step, I normalized the image data because because normalization makes the CNN model learn better. 
 
 
 ####2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
@@ -86,14 +70,25 @@ My final model consisted of the following layers:
 
 | Layer         		|     Description	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| Input         		| 32x32x3 RGB image   							| 
-| Convolution 3x3     	| 1x1 stride, same padding, outputs 32x32x64 	|
+| Input         		| 32x32x1 RGB image   							| 
+| Convolution 3x3     	| 1x1 stride, same padding, outputs 32x32x32 	|
 | RELU					|												|
-| Max pooling	      	| 2x2 stride,  outputs 16x16x64 				|
-| Convolution 3x3	    | etc.      									|
-| Fully connected		| etc.        									|
-| Softmax				| etc.        									|
-|						|												|
+| Max pooling	      	| 2x2 stride,  outputs 16x16x32 				|
+| Convolution 3x3	    | 1x1 stride, same padding, outputs 16x16x32 |
+| RELU					|												|
+| Max pooling	      	| 2x2 stride,  outputs 8x8x32 				|
+| Convolution 3x3	    | 1x1 stride, same padding, outputs 16x16x32 |
+| RELU					|												|
+| Dropout	      	| 0.6 				|
+| Convolution 3x3	    | 1x1 stride, same padding, outputs 16x16x32 |
+| RELU					|												|
+| Dropout      	| 0.6	|
+| Flatten      	| 8x8x32 = 2048	|
+| Fully connected		| (2048, 128)				|
+| Dropout      	| 0.6	|
+| Fully connected		| (128, 84)				|
+| Dropout      	| 0.6	|
+| Fully connected		| (84, 43)				|
 |						|												|
  
 
@@ -105,8 +100,8 @@ To train the model, I used an ....
 ####4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
 
 My final model results were:
-* training set accuracy of ?
-* validation set accuracy of ? 
+* training set accuracy of 99%.
+* validation set accuracy of 98%.
 * test set accuracy of ?
 
 If an iterative approach was chosen:
