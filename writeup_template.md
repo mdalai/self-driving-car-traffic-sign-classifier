@@ -128,11 +128,19 @@ My final model results were:
 
 Here are five German traffic signs that I found:
 
-![alt text](/test/test1.png) ![alt text](/test/test2.png) ![alt text](/test/test3.png) ![alt text](/test/test4.png) ![alt text](/test/test5.png)
+![alt text](/assets/new_imgs10.PNG)
+**Pre-analyze**:
+* image 2,3,8 are blur. The model may not recognize them well.
+* image 10 has a backgrount that is familear with sign edge. It may cause problem.
+* image 0,7 are pretty clear. The model should recognize them well.
 
 #### 2. Predictions
-![predictions](/assets/sofmax_top5.PNG)
+![predictions](/assets/sofmax_10_top5.PNG)
 
+**After-analyze**:
+* The model prediction result: 9 correct, 1 incorrect. So the accuracy rate is 90%, which is lower than test accuray 95% of provided data.
+* the model failed to recognize image 0 which is pretty clear. It predicted it as Speed limit (30km/h). It is supposed to b Speed limit (20km/h).
+* I found that Speed limit (20km/h) has very small amount of training data, less than 250. This is main reason the model failed to predict it correctly. We have to enough data on this category to make sure the model learned to recognize it.
 
 ### (Optional) Visualizing the Neural Network (See Step 4 of the Ipython notebook for more details)
 ####1. Discuss the visual output of your trained network's feature maps. What characteristics did the neural network use to make classifications?
