@@ -12,18 +12,6 @@ The goals / steps of this project are the following:
 * Analyze the softmax probabilities of the new images
 * Summarize the results with a written report
 
-
-[//]: # (Image References)
-
-[image1]: ./examples/visualization.jpg "Visualization"
-[image2]: ./examples/grayscale.jpg "Grayscaling"
-[image3]: ./examples/random_noise.jpg "Random Noise"
-[image4]: ./examples/placeholder.png "Traffic Sign 1"
-[image5]: ./examples/placeholder.png "Traffic Sign 2"
-[image6]: ./examples/placeholder.png "Traffic Sign 3"
-[image7]: ./examples/placeholder.png "Traffic Sign 4"
-[image8]: ./examples/placeholder.png "Traffic Sign 5"
-
 ## Rubric Points
 ---
 ### Writeup / README
@@ -52,9 +40,16 @@ Here is an exploratory visualization of the data set. It is a bar chart showing 
 ### Design and Test a Model Architecture
 
 #### 1. Preprocessed the image data.
-* Convert the images to grayscale
-* normalize the image data
-
+* **1st convert the images to grayscale**
+  * Converting into grayscale images are very important in this dataset. I tried 16 different CNN architecures without converting dataset into grayscale, the results are not satisfying. 
+  * The main reason is that grayscale images simplifies the algorithm and reduces computational requirements. 
+  * The grayscale images work best if there are limited amount of training data and illumination conditions were highly variable.
+  * Check out the article: [Color-to-Grayscale: Does the Method Matter in Image Recognition?](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0029740), which gives great explanation why need color-to-grayscale.
+  * I started a [discussion](https://discussions.udacity.com/t/validation-accuracy-88/293045/4) on Udacity Forum which might be helpful as well.
+* **2nd normalize the image data**
+  * image pixel values are from 0 to 255, which can form a large gap between largest value and smallest value. This gap impacts the deep neural network's learning capability significantly. Therefore, it is better to normalize the image data, scale it to low values. 
+  * Normalization makes training less sensitive to the scale of features.
+  * Normalization improves the convergence rate of gradient descent, make optimization well-conditioned.
 
 #### 2. The model architecture
 
