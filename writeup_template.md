@@ -127,8 +127,8 @@ My final model results were:
 #### 1. Choose five German traffic signs found on the web and provide them in the report. For each image, discuss what quality or qualities might be difficult to classify.
 
 Here are five German traffic signs that I found:
-
 ![alt text](/assets/new_imgs10.PNG)
+
 **Pre-analyze**:
 * image 2,3,8 are blur. The model may not recognize them well.
 * image 10 has a backgrount that is familear with sign edge. It may cause problem.
