@@ -92,7 +92,7 @@ My final model results were:
 * validation set accuracy of 96.6%.
 * test set accuracy of 95.1%.
 
-** I started with color image data. I thought it is not necessary to change images into gray scale. As I knew famous VGG and AlexNet models are succeed on RGB images. **
+**I started with color image data. I thought it is not necessary to change images into gray scale. As I knew famous VGG and AlexNet models are succeed on RGB images.**
 * Started with LeNet. At EPOCH 10, Training Accuracy = 0.971, Validation Accuracy = 0.763. Clearly it is overfitting, so I added dropouts.
 * LeNet + Dropout: At EPOCH 10, Training Accuracy = 0.868, Validation Accuracy = 0.722.  Dropout works. Let's try on more EPOCHS.
 * More EPOCHES to train: At EPOCH 21,Training Accuracy = 0.973, Validation Accuracy = 0.805. Obviously it is overfitting again.
@@ -102,12 +102,25 @@ My final model results were:
 * The common issue is overfitting. Lowest dropout I can try is 0.6. I tried 0.5, the model does not like it. It basically stopped learning.
 * This [Google Doc](https://docs.google.com/document/d/1r1ZT1nIan5SOhfctdkrXNfES7yOc3hqESByBbwizVCo/edit#) has more detailed training process. Feel free to check it out. 
 
-** After trying so many times, I was frustrated. I have to change the training strategy. I decided to work on dataset preprocessing.** 
+**After trying so many times, I was frustrated. I have to change the training strategy. I decided to work on dataset preprocessing.** 
 * Convert image dataset to gray scale. This step is **GAME CHANGER**.
 * Validation accuracy get to 94% just in 10 steps tranings.
 * 20 EPOCHS:
 
 ![train5](/assets/gray_training1.PNG)  ![train6](/assets/gray_training2.PNG)
+
+**General tactics for training the Deep Neural Networks:**
+* start simple, make sure it is working.
+  * with easy architecure, like LeNet.
+  * small EPOCHS like 5,10.
+  * appropriate learning rate, usually start with 0.001.
+  * small batch_size, 32/64. This depends on the comoputer memory. Assuming that you start training on the local computer which may have less memory. 
+* Make next move based on the results
+  * if having big gap between training accuracy and validation accuracy, it means over-fitting. Need to apply DROPOUT. Dropout is usually added after Relu activation layer. It is not necessary to adapt dropout if the layer has MAX pooling. Max pooling function same purpose. 
+  * Dropout's keep probability can start with 0.9. You can lower it based on the result. The suggested lowest value is 0.6.
+  * If training accuracy is low, means the model is having hard time learning. Need to add more layers to make it deeper OR add more neurens to make it more wider OR BOTH. 
+  * If tried many architecure and still struggling to improve, you may need to consider further preprocessing dataset.
+
 
 ### Test a Model on New Images
 
